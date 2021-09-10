@@ -1,0 +1,110 @@
+一、github之命令行使用
+1、新建一个文件夹
+2、创建文件
+echo "# studyGit" >> REAMDE.md
+3、初始化这个文件夹（没有进行配置的要进行配置一下）
+git init
+4、提交文件到本地库中（commit不行就用add）
+git add REAME.md（添加指定文件REAMDE.md）或者git add .（添加所有文件）
+5、创建分支（初始时若项目没有分支会进入你创建的分支中）
+git branch -M main（创建本地分支）
+6、链接github库（git remote -v 可查看链接）
+git remote add origin https://github.com//gftz-hww/studyGit.git（链接到该地址下的origin库中）
+7、推送你的文件进入github中
+git push origin main（git push 目的分支 本地分支）
+
+8、查看远程分支
+git branch -r
+9、clone指定分支
+git clone -b 分支名 github地址
+git clone -b testting http://192.168.1.10/mars/marsai.git
+10、删除远程分支
+git push origin --delete hjy
+git branch -d hjy（删除本地分支）
+11、查看所有配置
+git config -l
+12、查看系统配置
+git config --system -list
+13、查看用户配置
+git config --global --list
+14、修改配置文件
+git config --global user.name "hjy"
+15、查看文件状态
+git status
+git status 指定文件名
+16、撤销对文件的修改
+git checkout -- 文件名
+git checkout -- .gitignore
+17、git版本回退
+git log
+git reset --hard 前七位数字
+git push -f
+18、git保留之前版本，撤销之前本版提交的文件然后重做
+git log
+git revert -n commit号
+git push -f
+19、撤销最近一次commit
+git reset HEAD~
+
+二、ssh常用命令行使用
+1、远程登录（猫的密码为raspberry）
+ssh pi@192.168.1.135（pi表示用户名、192.168.....表示网址，之后还需要输入密码pi）
+2、上传文件到tmp中（因为其他文件可能没有权限）
+scp -r UI_test pi@192.168.1.135:/tmp（UI_test表示文件夹名称，pi表示用户名，/tmp表示上传的位置）
+
+三、linux常用命令行使用
+1、查看网端
+ifconfig
+2、运行*.py的文件
+python 文件名
+3、运行文件
+文件名
+4、删除文件
+rm -rf 文件名
+5、查看当前目录下的文件
+ls
+6、查看当前进程(grep 对信息进行筛选)（grep -v grep 表示筛选有效的信息）
+ps -ef | grep /bin | grep -v grep | awk '{print $2}'	（awk '{print $2}' 打印第二列的信息）
+7、开启进程
+sudo systemctl restart mar-recovery.service
+8、停止进程
+sudo systemctl disable mars-recovery.service
+sudo systemctl stop mars-recovery.service
+9、查看进程状态
+systemctl status mar-recovery.service
+10、下载python依赖库
+sudo apt-get install python3-pyqt5 
+11、查看挂载
+df -h
+12、查看分区情况
+lsblk --fs
+13、对/dev/sda进行分盘（p查看信息、n新建分区、d删除分区）
+fdisk /dev/sda
+14、if输出，of输入，将if中的内容写入of中，of可以是一个文件
+sudo dd if=/dev/loop0 of=/dev/sdd3 bs=4M status=progress
+15、挂载分区（将/dev/sdd3挂载在mnt中）
+sudo mount /dev/sdd3 /mnt
+16、卸下挂载
+sudo umount /dev/sdd3
+17、为挂载磁盘添加标签
+e2label /dev/sdb3 recoveryfs
+18、文件备份
+sudo sh -c "dd if=/dev/sdd2 bs=4M status=progress | gzip -6 > recovery.img.gz"
+19、“无中生有”创建文件
+mkdir -p /catkin_ws/src
+20、查看系统位数
+getconf LONG_BIT
+sudo uname --m
+21、安装oneko
+sudo apt install oneko
+22、运行oneko
+oneko -tora -speed 5 &
+
+四、linux系统下常用快捷键
+1、ctrl+t打开一个窗口
+2、f4关闭窗口
+3、tab补充命令行
+
+五、安装命令
+1、serialConfig.cmake需要安装
+sudo apt-get install ros-kinetic-serial
